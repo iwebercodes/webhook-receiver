@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ app_name }}{% endblock %}
+
+{% block body %}
+<style>
+    .container { margin: 2em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .container h1 { color: #333; }
+    .container p { color: #666; }
+    .status { background: #E8F5E9; padding: 1em; border-radius: 4px; border-left: 4px solid #4CAF50; }
+</style>
+
+<div class="container">
+    <h1>{{ app_name }}</h1>
+
+    <div class="status">
+        <strong>Status:</strong> Running on {{ version }}
+    </div>
+
+    <p>Welcome to the Webhook Receiver application. The system is ready to capture and process webhooks.</p>
+</div>
+{% endblock %}

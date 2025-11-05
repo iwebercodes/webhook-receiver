@@ -1,0 +1,15 @@
+services:
+  webhook-receiver:
+    build:
+      context: .
+    container_name: webhook-receiver
+    ports:
+      - "8080:80"
+    volumes:
+      - webhook-data:/var/www/html/var/data
+    environment:
+      APP_ENV: prod
+      APP_DEBUG: 0
+
+volumes:
+  webhook-data:

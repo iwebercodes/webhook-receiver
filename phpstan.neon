@@ -1,0 +1,19 @@
+includes:
+    - vendor/phpstan/phpstan-doctrine/extension.neon
+    - vendor/phpstan/phpstan-doctrine/rules.neon
+    - vendor/phpstan/phpstan-phpunit/extension.neon
+    - vendor/phpstan/phpstan-strict-rules/rules.neon
+
+parameters:
+    level: max
+    paths:
+        - src
+        - tests
+    tmpDir: tmp/phpstan
+    reportUnmatchedIgnoredErrors: true
+    checkImplicitMixed: true
+    checkExplicitMixed: true
+    treatPhpDocTypesAsCertain: true
+    inferPrivatePropertyTypeFromConstructor: true
+    parallel:
+        maximumNumberOfProcesses: 1

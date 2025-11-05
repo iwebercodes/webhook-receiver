@@ -1,0 +1,32 @@
+services:
+  app:
+    build:
+      context: .
+    environment:
+      APP_ENV: test
+      APP_DEBUG: 0
+    volumes:
+      - ./:/var/www/html
+    ports:
+      - "8080:80"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost/"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+      start_period: 5s
+
+  tests:
+    build:
+      context: .
+    environment:
+      APP_ENV: test
+      APP_DEBUG: 0
+      E2E_BASE_URL: http://app
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      app:
+        condition: service_healthy
+    working_dir: /var/www/html
+    entrypoint: ["/bin/bash", "/var/www/html/docker/e2e/run.sh"]
