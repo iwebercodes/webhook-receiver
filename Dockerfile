@@ -33,13 +33,25 @@ WORKDIR /var/www/html
 # Copy application files
 COPY . /var/www/html
 
+# Ensure a default env file exists for console commands during build
+RUN if [ ! -f .env ]; then cp .env.dist .env; fi
+
+# Set required env vars for composer install (Symfony post-install scripts need these)
+ENV APP_ENV=prod
+ENV APP_SECRET=placeholder-secret-will-be-overridden-at-runtime
+
 # Install PHP dependencies
-RUN composer install --optimize-autoloader
+RUN composer install --no-dev --optimize-autoloader --no-scripts \
+    && composer dump-autoload --optimize --classmap-authoritative
 
 # Create necessary directories and set permissions
 RUN mkdir -p var/cache var/log var/data && \
     chown -R www-data:www-data var/ && \
     chmod -R 775 var/
+
+# Warm up cache
+RUN php bin/console cache:clear --no-warmup && \
+    php bin/console cache:warmup
 
 # Configure PHP for production (can be overridden)
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
