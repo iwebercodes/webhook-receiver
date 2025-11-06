@@ -2,9 +2,11 @@ services:
   app:
     build:
       context: .
-      target: production
-    # No environment overrides - uses .env file defaults (prod mode)
-    # No volume mounts - test the actual built image
+    environment:
+      APP_ENV: test
+      APP_DEBUG: 1
+    volumes:
+      - ./:/var/www/html
     ports:
       - "8080:80"
     healthcheck:
@@ -17,11 +19,12 @@ services:
   tests:
     build:
       context: .
-      target: testing
     environment:
-      # Only set E2E_BASE_URL - everything else uses .env defaults
+      APP_ENV: test
+      APP_DEBUG: 1
       E2E_BASE_URL: http://app
-    # No volume mounts - test the actual built image
+    volumes:
+      - ./:/var/www/html
     depends_on:
       app:
         condition: service_healthy

@@ -1,0 +1,78 @@
+# Git files
+.git
+.gitignore
+.gitattributes
+
+# Environment files (use .env.dist as template)
+.env
+.env.local
+.env.local.php
+.env.*.local
+
+# Composer dependencies (will be installed in container)
+/vendor/
+
+# Node modules
+/node_modules/
+
+# Build artifacts and caches
+/var/cache/*
+/var/log/*
+/var/data/*.db
+/.phpunit.cache/
+.php-cs-fixer.cache
+.phpunit.result.cache
+/public/build/
+coverage/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+/tmp/
+/tmp-docs/
+*.bak
+*.tmp
+
+# Docker files
+Dockerfile*
+docker-compose*.yml
+compose*.yaml
+compose*.yml
+.dockerignore
+
+# CI/CD files
+.github/
+
+# Coding assistant files
+CLAUDE.md
+AGENTS.md
+.cursorrules
+.cursor/
+.claude/
+
+# Documentation (README is included)
+/tmp-docs/
+
+# Development tools config (optional - kept for testing target)
+phpstan.neon
+phpinsights.php
+.php-cs-fixer.php
+.editorconfig
+.phpunit.result.cache
+
+# Build scripts
+build.sh

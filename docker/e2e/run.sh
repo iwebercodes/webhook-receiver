@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-export APP_ENV=${APP_ENV:-test}
+export APP_ENV=${APP_ENV:-prod}
 export APP_DEBUG=${APP_DEBUG:-0}
 export E2E_BASE_URL=${E2E_BASE_URL:-http://app}
 

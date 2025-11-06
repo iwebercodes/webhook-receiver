@@ -87,7 +87,8 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
-        "e2e": "docker compose -f compose.e2e.yaml run --rm tests"
+        "e2e": "docker compose -f compose.e2e.local.yaml run --rm tests",
+        "e2e:ci": "docker compose -f compose.e2e.yaml run --rm tests"
     },
     "conflict": {
         "symfony/symfony": "*"
